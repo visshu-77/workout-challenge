@@ -1,0 +1,13 @@
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #334155;
+  color: white;
+  outline: none;
+}
+
+.min-h-screen.p-6.max-w-6xl.mx-auto {
+    max-width: 1840px;
+}
+
