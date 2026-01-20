@@ -186,6 +186,7 @@ import Navbar from "../components/Navbar";
 import WorkoutCalendar from "../components/WorkoutCalendar";
 import MonthlyStats from "../components/MonthlyStats";
 
+
 const quotes = [
     "Discipline beats motivation.",
     "No excuses. Just results.",
@@ -396,7 +397,7 @@ function Home() {
             </section>
 
             {/* ================= PROGRESS SECTION ================= */}
-            <section ref={progressRef} className="w-full px-6 py-16 bg-slate-900">
+            {/* <section ref={progressRef} className="w-full px-6 py-16 bg-slate-900">
                 <h2 className="text-3xl font-bold mb-8 text-center text-white">
                     Your Progress
                 </h2>
@@ -418,7 +419,48 @@ function Home() {
                         </motion.div>
                     ))}
                 </div>
+            </section> */}
+
+            <section ref={progressRef} className="w-full px-6 py-16 bg-slate-900">
+                <h2 className="text-3xl font-bold mb-8 text-center text-white">
+                    Your Progress
+                </h2>
+
+                {(() => {
+                    // get latest day
+                    const latestDay = Math.max(...user.workouts.map(w => w.day));
+
+                    // calculate 7-day window
+                    const startDay = Math.floor((latestDay - 1) / 7) * 7 + 1;
+                    const endDay = startDay + 6;
+
+                    return (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {user.workouts
+                                .filter(w => w.day >= startDay && w.day <= endDay)
+                                .map((w) => (
+                                    <motion.div
+                                        key={w._id}
+                                        whileHover={{ scale: 1.05 }}
+                                        className="bg-slate-800 rounded-xl overflow-hidden shadow-md"
+                                    >
+                                        <div className="p-4 font-semibold text-[#a6a6a6]">
+                                            Day {w.day}
+                                        </div>
+                                        <img
+                                            src={`http://localhost:5000/uploads/${w.image}`}
+                                            className="w-full h-48 object-cover"
+                                            alt={`Day ${w.day} progress`}
+                                        />
+                                    </motion.div>
+                                ))}
+                        </div>
+                    );
+                })()}
             </section>
+
+
+
 
             {/* ================= BMI SECTION (ON SCROLL) ================= */}
 
