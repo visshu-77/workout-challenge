@@ -186,6 +186,8 @@ import Navbar from "../components/Navbar";
 import WorkoutCalendar from "../components/WorkoutCalendar";
 import MonthlyStats from "../components/MonthlyStats";
 
+import "../styles/hero.css";
+
 
 const quotes = [
     "Discipline beats motivation.",
@@ -230,7 +232,7 @@ function Home() {
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 300) {
-                setShowBMISection(true);
+                // setShowBMISection(true);
             }
         };
         window.addEventListener("scroll", handleScroll);
@@ -330,7 +332,7 @@ function Home() {
             <Navbar />
 
             {/* ================= HERO SECTION ================= */}
-            <section className="h-[400px] w-full bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center text-center px-6">
+            {/* <section className="h-[400px] w-full bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center text-center px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -355,7 +357,41 @@ function Home() {
                         </motion.div>
                     )}
                 </motion.div>
+            </section> */}
+            
+            <section className="relative w-full min-h-[420px] bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center px-6 overflow-hidden">
+
+                {/* subtle background glow */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(250,204,21,0.08),transparent_60%)]"></div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="relative z-10 max-w-3xl text-center"
+                >
+                    <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-white tracking-tight">
+                        🔥 <span className="text-yellow-400">{user.streak}</span> Day Streak
+                    </h1>
+
+                    <p className="text-lg md:text-xl italic text-gray-300 max-w-2xl mx-auto">
+                        “{quote}”
+                    </p>
+
+                    {missedYesterday() && (
+                        <motion.div
+                            initial={{ x: -20, opacity: 0 }}
+                            animate={{ x: [0, -10, 10, -10, 0], opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                            className="mt-8 bg-red-500/15 border border-red-500/50 text-red-400 p-4 rounded-xl"
+                        >
+                            ⚠️ You missed a day! Your streak has been reset.
+                            Start again today 💪
+                        </motion.div>
+                    )}
+                </motion.div>
             </section>
+
 
             {/* ================= DASHBOARD SECTION ================= */}
             <section className="w-full px-6 py-16 bg-slate-900">
@@ -448,7 +484,7 @@ function Home() {
                                             Day {w.day}
                                         </div>
                                         <img
-                                            src={`http://localhost:5000/uploads/${w.image}`}
+                                            src={w.image}
                                             className="w-full h-48 object-cover"
                                             alt={`Day ${w.day} progress`}
                                         />

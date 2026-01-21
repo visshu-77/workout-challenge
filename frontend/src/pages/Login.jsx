@@ -11,7 +11,7 @@ function Login() {
             localStorage.setItem("token", res.data.token);
             window.location.href = "/home";
         } catch {
-            alert("Invalid email or password");
+            alert("Invaid email or password");
         }
     };
 

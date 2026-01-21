@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const workoutSchema = new mongoose.Schema({
   day: Number,
   image: String,
+  public_id: String,
   date: Date,
-  resetToken: String,
-  resetTokenExpiry: Date,
 });
 
 const userSchema = new mongoose.Schema({
@@ -19,19 +18,13 @@ const userSchema = new mongoose.Schema({
 
   profileImage: { type: String },
 
-  workoutTime: { type: String }, // e.g. "Morning 6 AM"
+  workoutTime: { type: String }, 
 
   streak: { type: Number, default: 0 },
 
   lastUploadDate: Date,
 
   workouts: [workoutSchema],
-
-  height: { type: Number }, // cm
-  weight: { type: Number }, // kg
-  age: { type: Number },
-  gender: { type: String }, // optional
-
 });
 
 module.exports = mongoose.model("User", userSchema);

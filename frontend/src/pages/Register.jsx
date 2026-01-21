@@ -96,6 +96,7 @@ function Register() {
             onChange={(e) =>
               setForm({ ...form, name: e.target.value })
             }
+            required
           />
 
           {/* MOBILE */}
@@ -106,6 +107,7 @@ function Register() {
             onChange={(e) =>
               setForm({ ...form, mobile: e.target.value })
             }
+            required
           />
 
           {/* EMAIL */}
@@ -116,6 +118,7 @@ function Register() {
             onChange={(e) =>
               setForm({ ...form, email: e.target.value })
             }
+            required
           />
 
           {/* PASSWORD */}
@@ -126,6 +129,7 @@ function Register() {
             onChange={(e) =>
               setForm({ ...form, password: e.target.value })
             }
+            required
           />
 
           {/* WORKOUT TIME */}
@@ -136,6 +140,7 @@ function Register() {
             onChange={(e) =>
               setForm({ ...form, workoutTime: e.target.value })
             }
+            required
           />
 
           {/* PROFILE IMAGE */}
@@ -148,6 +153,7 @@ function Register() {
               accept="image/*"
               className="text-sm text-gray-300"
               onChange={(e) => setProfileImage(e.target.files[0])}
+              required
             />
           </div>
 
